@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
-import { X } from "lucide-react"
+import { X, MessageCircle } from "lucide-react"
 import { marked } from 'marked'
 
 interface Message {
@@ -111,8 +111,8 @@ export default function ChatInterface() {
 
   // Patch marked renderer to add a custom class to links
   const renderer = new marked.Renderer();
-  renderer.link = function(href, title, text) {
-    return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="highlight-link">${text}</a>`;
+  renderer.link = function({ href, title, text }: { href?: string; title?: string | null; text?: string }) {
+    return `<a href="${href ?? ''}" target="_blank" rel="noopener noreferrer" class="highlight-link">${text ?? ''}</a>`;
   };
 
   function linkifyUrls(text: string) {
@@ -146,9 +146,10 @@ export default function ChatInterface() {
       <div className="fixed top-4 right-4 z-50 lg:bottom-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:top-auto lg:right-auto">
         <button
           onClick={handleInitialClick}
-          className="text-neutral-900 dark:text-neutral-100 px-4 py-2 hover:text-neutral-600 dark:hover:text-neutral-400 transition-all duration-300 flex items-center space-x-2"
+          className="text-neutral-900 dark:text-neutral-100 px-4 py-2 hover:text-neutral-600 dark:hover:text-neutral-400 transition-all duration-300 flex items-center space-x-2 group"
         >
           <span className="text-xs font-light">Ask anything about me</span>
+          <MessageCircle size={16} className="text-neutral-900 dark:text-neutral-100 scale-110 group-hover:scale-100 transition-transform" />
         </button>
       </div>
     )
@@ -176,7 +177,7 @@ export default function ChatInterface() {
           {messages.map((message) => (
             <div key={message.id} className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}>
               <div className={`max-w-[80%] ${message.isUser ? "text-right" : "text-left"}`}>
-                <div className="text-xs text-neutral-900 dark:text-neutral-100 leading-relaxed" dangerouslySetInnerHTML={{ __html: marked.parse(linkifyUrls(fixDemoLinks(message.text)), { renderer }) }} />
+                <div className="text-xs text-neutral-900 dark:text-neutral-100 leading-relaxed" dangerouslySetInnerHTML={{ __html: marked.parse(linkifyUrls(fixDemoLinks(message.text)), { renderer }) as string }} />
               </div>
             </div>
           ))}
