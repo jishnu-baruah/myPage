@@ -415,6 +415,7 @@ def query_rag(req: QueryRequest):
         is_bio = any(word in q_lower for word in ["bio", "about", "background", "tagline"])
         is_tech = any(word in q_lower for word in TECH_KEYWORDS)
         is_profile = any(word in q_lower for word in PROFILE_SECTIONS) and not any(name in q_lower for name in ["mintellect", "satsfi", "kuroro", "outdated", "incomestream", "haptic"])
+        is_greeting = any(word in q_lower for word in ["hello", "hi", "hey", "greetings"])
         # Check for specific intents before greeting
         if is_contact:
             pass  # will be handled below
