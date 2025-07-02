@@ -17,14 +17,6 @@ export const metadata: Metadata = {
     generator: 'v0.dev'
 }
 
-function CopyrightOverlay() {
-  return (
-    <div className="fixed bottom-6 lg:bottom-10 left-6 lg:left-10 text-xs text-neutral-900 dark:text-neutral-100 z-50 pointer-events-none select-none">
-      © Jishnu Baruah
-    </div>
-  )
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -32,21 +24,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-white text-black dark:bg-[rgb(23,23,23)] dark:text-white">
-        <BackgroundCanvas />
-        <ClientLayout>
-          <ThemeProvider>{children}</ThemeProvider>
-        </ClientLayout>
+      <body className="bg-white text-black dark:bg-[rgb(23,23,23)] dark:text-white min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5">
+        <ThemeProvider>
+          <div className="w-full">
+            <div className="global-border-wrapper relative border-2 border-neutral-400 dark:border-neutral-600 p-1 sm:p-2 md:p-3 rounded-xl shadow-lg overflow-hidden h-[calc(100vh-1rem)] sm:h-[calc(100vh-1.5rem)] md:h-[calc(100vh-2.5rem)]">
+              <BackgroundCanvas />
+              <div className="relative z-10">
+                {children}
+              </div>
+            </div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
-}
-
-// Render the copyright overlay globally (outside the page tree)
-if (typeof window !== 'undefined') {
-  const copyrightDiv = document.createElement('div');
-  document.body.appendChild(copyrightDiv);
-  import('react-dom').then(ReactDOM => {
-    ReactDOM.render(<CopyrightOverlay />, copyrightDiv);
-  });
 }

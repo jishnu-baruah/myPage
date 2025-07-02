@@ -74,15 +74,9 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
 
   return (
-    <div
-      className="p-4 lg:p-8"
-      style={{ height: "100dvh" }}
-    >
+    <>
       {/* Theme Toggle - Outside Border */}
       <ThemeToggle />
-
-      {/* Main Container with Border */}
-      <div className="h-full border border-neutral-400 dark:border-neutral-600 dark:bg-black relative overflow-hidden" style={{ background: 'transparent' }}>
         {/* Three Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-10 h-full relative">
           {/* Left Column */}
@@ -100,7 +94,7 @@ export default function Projects() {
           </div>
 
           {/* Center Column - Particle Stream Only */}
-          <div className="lg:col-span-3 relative">
+        <div className="lg:col-span-3 relative">
             {/* Three.js Canvas for flowing stream */}
             <div className="absolute inset-0">
               <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ zIndex: 5 }} />
@@ -108,7 +102,7 @@ export default function Projects() {
           </div>
 
           {/* Right Column - Projects List */}
-          <div className="lg:col-span-4 relative z-20">
+        <div className="lg:col-span-4 relative z-20">
             <div
               className="overflow-y-auto scrollbar-none"
               style={{
@@ -122,28 +116,27 @@ export default function Projects() {
                 {projects.map((project, index) => (
                   <div
                     key={index}
-                    className={`relative cursor-pointer transition-all duration-300 text-right ${
+                  className={`relative cursor-pointer transition-all duration-300 text-right ${
                       selectedProject === index ? "opacity-100" : "opacity-80 hover:opacity-100"
                     }`}
                     onClick={() => setSelectedProject(selectedProject === index ? null : index)}
                   >
                     <div className="space-y-2">
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer" className="font-semibold text-xl lg:text-2xl no-underline hover:opacity-80 transition-opacity">{project.title}</a>
-                      <div className="text-xs text-neutral-500 w-full text-right whitespace-normal lg:whitespace-nowrap break-words">{project.year} &middot; {project.role} &middot; {project.shortDescription}</div>
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="font-semibold text-xl lg:text-2xl no-underline hover:opacity-80 transition-opacity">{project.title}</a>
+                    <div className="text-xs text-neutral-500 w-full text-right whitespace-normal lg:whitespace-nowrap break-words">{project.year} &middot; {project.role} &middot; {project.shortDescription}</div>
                       <div className="text-sm text-neutral-700 dark:text-neutral-300 flex items-center justify-end space-x-4">
-                        {/* No 'design' property, so nothing to render here */}
-                      </div>
+                      {/* No 'design' property, so nothing to render here */}
+                    </div>
                     </div>
                   </div>
                 ))}
-              </div>
+            </div>
             </div>
           </div>
         </div>
 
         {/* Chat Interface */}
         <ChatInterface />
-      </div>
-    </div>
+    </>
   )
 }
