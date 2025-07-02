@@ -17,7 +17,7 @@ export default function Contact() {
       {/* Main Container with Border */}
       <div className="h-full border border-neutral-400 dark:border-neutral-600 dark:bg-black relative overflow-hidden" style={{ background: 'transparent' }}>
         {/* Three Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen relative overflow-visible">
           {/* Left Column */}
           <div className="lg:col-span-3 p-6 lg:p-10 relative z-20">
             {/* Name and Title */}
@@ -37,9 +37,9 @@ export default function Contact() {
           </div>
 
           {/* Right Column - Contact Content */}
-          <div className="lg:col-span-3 relative z-20">
+          <div className="lg:col-span-3 relative z-20 flex flex-col items-center lg:items-end mt-2 lg:mt-0 h-full lg:overflow-visible">
             {/* Contact Information */}
-            <div className="absolute top-6 lg:top-10 right-6 lg:right-10 text-xs text-neutral-900 dark:text-neutral-100">
+            <div className="relative lg:absolute top-0 right-0 lg:top-10 lg:right-10 text-xs text-neutral-900 dark:text-neutral-100 w-full max-w-xs mx-auto lg:mx-0 mt-2 lg:mt-0">
               <div className="space-y-4">
                 <div>
                   <div className="mb-2 font-medium">Email</div>
@@ -86,7 +86,7 @@ export default function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="absolute bottom-20 right-6 lg:right-10 text-xs text-neutral-900 dark:text-neutral-100 max-w-[250px]">
+            <div className="relative lg:absolute bottom-0 right-0 lg:bottom-20 lg:right-10 text-xs text-neutral-900 dark:text-neutral-100 w-full max-w-xs mx-auto lg:mx-0 mt-4 lg:mt-8 pb-16 lg:pb-0">
               <div className="space-y-4">
                 <div className="mb-4 font-medium">Get in touch</div>
 

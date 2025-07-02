@@ -17,7 +17,7 @@ export default function Info() {
       {/* Main Container with Border */}
       <div className="h-full border border-neutral-400 dark:border-neutral-600 dark:bg-black relative overflow-hidden" style={{ background: 'transparent' }}>
         {/* Three Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-screen relative overflow-visible">
           {/* Left Column */}
           <div className="lg:col-span-3 p-6 lg:p-10 relative z-20">
             {/* Name and Title */}
@@ -33,8 +33,8 @@ export default function Info() {
           </div>
 
           {/* Center Column - Social Links Only */}
-          <div className="lg:col-span-6 relative">
-            <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-xs text-neutral-900 dark:text-neutral-100 z-10">
+          <div className="lg:col-span-6 relative flex flex-col items-center justify-center">
+            <div className="relative lg:absolute top-0 left-0 lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-y-1/2 lg:-translate-x-1/2 text-xs text-neutral-900 dark:text-neutral-100 z-10 w-full max-w-xs mx-auto mt-2 lg:mt-0">
               <div className="space-y-1">
                 <div>
                   <a
@@ -65,9 +65,9 @@ export default function Info() {
           </div>
 
           {/* Right Column - Info Content */}
-          <div className="lg:col-span-3 relative z-20">
+          <div className="lg:col-span-3 relative z-20 flex flex-col items-center lg:items-end mt-8 lg:mt-0 h-full lg:overflow-visible">
             {/* Top Right - Links */}
-            <div className="absolute top-6 lg:top-10 right-6 lg:right-10 text-xs text-neutral-900 dark:text-neutral-100">
+            <div className="relative lg:absolute top-0 right-0 lg:top-10 lg:right-10 text-xs text-neutral-900 dark:text-neutral-100 w-full max-w-xs mx-auto lg:mx-0 mt-2 lg:mt-0">
               <div className="space-y-1">
                 <div>
                   <a
@@ -91,7 +91,7 @@ export default function Info() {
             </div>
 
             {/* Bottom Right - Achievements (absolutely positioned in bordered container) */}
-            <div className="absolute bottom-8 right-8 text-xs text-neutral-900 dark:text-neutral-100 leading-relaxed z-30 max-w-xs text-right">
+            <div className="text-xs text-neutral-900 dark:text-neutral-100 leading-relaxed z-30 max-w-full lg:max-w-xs text-right mt-4 lg:mt-0 lg:absolute lg:bottom-24 lg:right-8 pb-16">
               <p>
                 <span className="font-semibold">Awards & Achievements</span>
                 <br />

@@ -38,8 +38,8 @@ export default function Portfolio() {
           </div>
 
           {/* Right Column - Biography */}
-          <div className="lg:col-span-3 p-6 lg:p-10 relative z-20">
-            <div className="absolute bottom-20 right-6 lg:right-10 text-xs text-neutral-900 dark:text-neutral-100 leading-relaxed max-w-[180px]">
+          <div className="lg:col-span-3 p-6 lg:p-10 relative z-20 flex flex-col justify-end">
+            <div className="relative lg:absolute bottom-0 right-0 lg:bottom-20 lg:right-10 text-xs text-neutral-900 dark:text-neutral-100 leading-relaxed max-w-full lg:max-w-[180px] mt-8 lg:mt-0 mb-32 lg:mb-0">
               <p>
                 Building Web3 + AI Tools | Leading with Tech | Empowering Creators. I believe in building technology that empowers communities. With a background in full-stack development, IoT, and AI, I focus on solving real-world problems through smart, scalable solutions. I also lead and mentor student teams to foster a hands-on learning ecosystem. Kolkata, India.
               </p>

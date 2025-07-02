@@ -143,7 +143,7 @@ export default function ChatInterface() {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+      <div className="fixed top-4 right-4 z-50 lg:bottom-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:top-auto lg:right-auto">
         <button
           onClick={handleInitialClick}
           className="text-neutral-900 dark:text-neutral-100 px-4 py-2 hover:text-neutral-600 dark:hover:text-neutral-400 transition-all duration-300 flex items-center space-x-2"

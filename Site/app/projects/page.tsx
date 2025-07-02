@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 const projects = [
   {
     title: "Mintellect",
-    year: "2024",
+    year: "2025",
     shortDescription: "AI Academic Platform",
     description: "AI-Powered Academic Integrity & Research Publishing Platform. Combines AI tools with decentralized storage to ensure integrity in academic publishing.",
     tech: ["Next.js", "Node.js", "MongoDB", "AI APIs", "Web3 (IPFS/Filecoin)"],
@@ -18,7 +18,7 @@ const projects = [
   },
   {
     title: "Satsfi",
-    year: "2024",
+    year: "2025",
     shortDescription: "Prompt-to-DeFi Tool",
     description: "Prompt-to-DeFi Automation Tool. Convert plain text prompts into DeFi operations.",
     tech: ["Next.js", "Web3.js", "AI APIs", "Solidity", "Vercel"],
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     title: "Kuroro Sensei",
-    year: "2023",
+    year: "2025",
     shortDescription: "AI Study Guides",
     description: "AI-Powered Study Guide Generator. Crafts personalized, efficient revision notes for exam prep.",
     tech: ["Node.js", "LLM APIs", "LangChain", "Pinecone"],
@@ -38,7 +38,7 @@ const projects = [
   },
   {
     title: "Outdated",
-    year: "2023",
+    year: "2025",
     shortDescription: "Private ML Platform",
     description: "Privacy-First Machine Learning Platform. Local, secure ML without data compromise.",
     tech: ["Python", "Flask/FastAPI", "Federated Learning", "WebRTC"],
@@ -48,7 +48,7 @@ const projects = [
   },
   {
     title: "IncomeStream",
-    year: "2023",
+    year: "2024",
     shortDescription: "Web3 Payments",
     description: "Web3 Payment Flow Toolkit. Quickly set up Web3-compatible payment flows.",
     tech: ["React", "Web3.js", "Solidity", "Vercel"],
@@ -58,10 +58,10 @@ const projects = [
   },
   {
     title: "Haptic Feedback Suit for the Blind",
-    year: "2022",
+    year: "2023",
     shortDescription: "IoT Haptic Suit",
     description: "Wearable IoT Solution for Visually Impaired Navigation. Real-time haptic suit using ultrasonic sensors to guide blind users through vibrations.",
-    tech: ["Arduino", "Ultrasonic Sensors", "Vibration Motors", "Embedded C"],
+    tech: ["Arduino","ESP32", "Ultrasonic Sensors", "Vibration Motors", "Embedded C"],
     role: "Lead Developer (Circuit, Firmware, Prototype)",
     demo: "Offline (hardware demo available on request)",
     source: "Not available",
@@ -71,15 +71,12 @@ const projects = [
 
 export default function Projects() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const sceneRef = useRef<THREE.Scene | null>(null)
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
-  const animationIdRef = useRef<number | null>(null)
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
 
   return (
     <div
-      className="p-4 lg:p-8 overflow-hidden"
-      style={{ height: "100vh", height: "100dvh" }}
+      className="p-4 lg:p-8"
+      style={{ height: "100dvh" }}
     >
       {/* Theme Toggle - Outside Border */}
       <ThemeToggle />
@@ -132,14 +129,9 @@ export default function Projects() {
                   >
                     <div className="space-y-2">
                       <a href={project.demo} target="_blank" rel="noopener noreferrer" className="font-semibold text-xl lg:text-2xl no-underline hover:opacity-80 transition-opacity">{project.title}</a>
-                      <div className="text-xs text-neutral-500 w-full text-right whitespace-nowrap">{project.year} &middot; {project.role} &middot; {project.shortDescription}</div>
+                      <div className="text-xs text-neutral-500 w-full text-right whitespace-normal lg:whitespace-nowrap break-words">{project.year} &middot; {project.role} &middot; {project.shortDescription}</div>
                       <div className="text-sm text-neutral-700 dark:text-neutral-300 flex items-center justify-end space-x-4">
-                        {project.design && (
-                          <>
-                            <span>•</span>
-                            <span>{project.design}</span>
-                          </>
-                        )}
+                        {/* No 'design' property, so nothing to render here */}
                       </div>
                     </div>
                   </div>

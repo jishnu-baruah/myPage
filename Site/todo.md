@@ -45,4 +45,16 @@
 **Stretch Goals:**
 - [ ] Add user authentication (if needed for advanced features)
 - [ ] Analytics for AI usage and user queries
-- [ ] Admin dashboard for monitoring RAG/Gemini usage 
+- [ ] Admin dashboard for monitoring RAG/Gemini usage
+
+# TODO: Make Site Fully Responsive for Mobile (No Overlap, Desktop Unchanged)
+
+- [ ] Home page: Ensure all sections stack and nothing overlaps on mobile
+- [ ] Projects page: Make project list, columns, and overlays responsive
+- [ ] Info page: Stack social links, awards, and bio vertically on mobile; remove absolute positioning on mobile
+- [ ] Contact page: Stack contact info, socials, and form vertically on mobile; remove absolute positioning on mobile
+- [ ] Navigation: Ensure navigation is accessible and not overlapping on mobile
+- [ ] Chat interface: Confirm button and modal are mobile-friendly (already mostly done)
+- [ ] Test all pages on various mobile screen sizes
+- [ ] Polish paddings, margins, and max-widths for mobile
+- [ ] Keep all desktop (`lg:`) styling unchanged 
