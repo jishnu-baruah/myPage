@@ -65,7 +65,7 @@ export default function ChatInterface() {
 
     // Call RAG+Gemini backend
     try {
-      const res = await fetch("http://localhost:8000/query", {
+      const res = await fetch("https://mypage-ied6.onrender.com/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: userMessage.text, history })
