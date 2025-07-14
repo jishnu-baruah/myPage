@@ -153,3 +153,13 @@ canvas {
     border-bottom: 2px solid #525252; /* neutral-600 */
   }
 }
+
+/* Gradient shimmer animation for loading bar */
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 2s ease-in-out infinite;
+}

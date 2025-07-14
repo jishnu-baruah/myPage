@@ -38,6 +38,7 @@
 - BRICS 2024 International Skills Competition — 3rd Prize, Data Analytics (India Representative)
 - EduChain Hackathon (Semester 3) — Winner, Mintellect (AI Academic Platform) & Kuroro (AI Study Guide Generator)
 - Techno Batanagar Hackathon — Prize Winner, IoT Track (Haptic Feedback Suit for the Blind)
+- Solana * CoinDCX Grant Winner
 
 ## Contact & Socials
 - **Email:** jsbaruah1@gmail.com

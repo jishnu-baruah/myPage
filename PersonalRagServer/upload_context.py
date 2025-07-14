@@ -3,32 +3,50 @@ import uuid
 import json
 import re
 from dotenv import load_dotenv
-from pinecone import Pinecone
-from huggingface_hub import InferenceClient
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
+from langchain_pinecone import PineconeVectorStore
+import pinecone
+from pinecone import Pinecone, ServerlessSpec
 
 load_dotenv()
 
-API_KEY = os.environ["PINECONE_API_KEY"]
-HF_TOKEN = os.environ["HF_TOKEN"]
-MODEL_NAME = "BAAI/bge-base-en-v1.5"
-INDEX_NAME = "portfolio-snippets"
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+PINECONE_INDEX = os.getenv("PINECONE_INDEX", "portfolio-index")
+HF_TOKEN = os.getenv("HF_TOKEN")
+HF_MODEL_NAME = os.getenv("HF_MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2")
 CONTEXT_FILE = "context.md"
 ALL_PROJECT_IDS_FILE = "all_project_ids.json"
 
-pc = Pinecone(api_key=API_KEY)
-index = pc.Index(INDEX_NAME)
-client = InferenceClient(provider="hf-inference", api_key=HF_TOKEN)
+# Embeddings
+hf_embeddings = HuggingFaceEndpointEmbeddings(
+    repo_id=HF_MODEL_NAME,
+    huggingfacehub_api_token=HF_TOKEN
+)
+
+# Ensure Pinecone index exists
+pc = Pinecone(api_key=PINECONE_API_KEY)
+if PINECONE_INDEX not in pc.list_indexes().names():
+    pc.create_index(
+        name=PINECONE_INDEX,
+        dimension=384,  # all-MiniLM-L6-v2 and similar models use 384
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1")
+    )
+
+# Vector DB
+vectordb = PineconeVectorStore.from_existing_index(
+    index_name=PINECONE_INDEX,
+    embedding=hf_embeddings
+)
 
 def parse_project_lines(buffer):
     projects = []
     project = {}
     for line in buffer:
         if line.startswith('**'):
-            # New project
             if project:
                 projects.append(project)
                 project = {}
-            # Extract name and year
             m = re.match(r'\*\*(.*?)\*\* ?\((\d{4})\)?:? ?(.*)', line)
             if m:
                 project['name'] = m.group(1).strip()
@@ -92,15 +110,12 @@ def embed_and_upload(snippets):
     for snip in snippets:
         text = snip["text"]
         section = snip["section"]
-        embedding = client.feature_extraction(text, model=MODEL_NAME)
-        if hasattr(embedding, "tolist"):
-            embedding = embedding.tolist()
         snippet_id = f"context-{uuid.uuid4()}"
-        index.upsert(vectors=[(
-            snippet_id,
-            embedding,
-            {"text": text, "section": section}
-        )])
+        vectordb.add_texts(
+            texts=[text],
+            metadatas=[{"text": text, "section": section}],
+            ids=[snippet_id]
+        )
         print(f"Uploaded snippet: {section} | {text[:60]}...")
         if section == "Projects":
             project_ids.append(snippet_id)
