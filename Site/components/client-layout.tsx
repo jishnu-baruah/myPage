@@ -6,7 +6,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 1000);
+    const timer = setTimeout(() => setShowSplash(false), 100000);
     return () => clearTimeout(timer);
   }, []);
 

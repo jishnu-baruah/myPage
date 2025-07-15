@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-toggle"
-import ClientLayout from "@/components/client-layout"
 import BackgroundCanvas from "@/components/background-canvas"
 
 const inter = Inter({
