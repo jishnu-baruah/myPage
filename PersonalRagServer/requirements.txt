@@ -10,3 +10,5 @@ requests
 httpx
 google-generativeai
 langchain-google-genai
+langchain_huggingface
+pydantic
